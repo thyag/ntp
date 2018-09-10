@@ -1,17 +1,19 @@
 #class: ntp
 #
 class ntp (
+  $package_name = 'ntp',
   $package_ensure = 'present',
-  $file_path = '/etc/ntp.conf',
-  $file_source = '/tmp/ntp.conf',
   $package_provider = 'yum',
+  $file_path = '/etc/ntp.conf',
+  $file_source = '/tmp/ntp.conf',  
   $file_ensure = 'present',
   $service_ensure = 'present',
-
+  $service_name = 'ntpd',
+  $service_enable = 'true',
 ){
   # reso
   # package install 
-  package { 'ntp':
+  package { $package_name:
     ensure   => $package_ensure,
     provider => $package_provider,
   }
@@ -21,8 +23,8 @@ class ntp (
     source => $file_source,
   }
   # manage service 
-  service { 'ntpd':
+  service { $service_name:
     ensure => $service_ensure,
-    enable => true,
+    enable => $service_enable,
   }
 }
