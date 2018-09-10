@@ -7,7 +7,7 @@ class ntp (
   $file_path = '/etc/ntp.conf',
   $file_source = '/tmp/ntp.conf',  
   $file_ensure = 'present',
-  $service_ensure = 'present',
+  $service_ensure = 'running',
   $service_name = 'ntpd',
   $service_enable = 'true',
 ){
